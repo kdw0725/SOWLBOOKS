@@ -4,6 +4,6 @@
 	"http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias alias="testVO" type="com.sowl.sowlbooks.VO.testVO"/>
+		<typeAlias alias="memberVO" type="com.sowl.sowlbooks.VO.memberVO"/>
 	</typeAliases>
 </configuration>
