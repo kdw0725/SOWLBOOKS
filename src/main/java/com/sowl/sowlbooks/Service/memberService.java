@@ -21,5 +21,17 @@ public class memberService implements UserDetailsService{
 		}
 		return user;
 	}
+	
+	public int checkNo(int member_no) throws Exception{
+		return dao.checkNo(member_no);
+	}
+	
+	public int checkId(String member_id) throws Exception{
+		return dao.checkId(member_id);
+	}
+	
+	public int signIn(memberVO vo) throws Exception{
+		return dao.signIn(vo);
+	}
 
 }

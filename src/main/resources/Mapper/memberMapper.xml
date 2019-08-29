@@ -13,4 +13,43 @@
 								MEMBER_ID=#{member_id}
 		]]>
 	</select>
+	
+	<select id="checkNo" parameterType="int" resultType="int">
+		SELECT
+							COUNT(MEMBER_NO)
+		FROM
+							MEMBER
+		WHERE
+							MEMBER_NO = #{ member_no}
+	</select>
+	
+	<select id="checkId" parameterType="String" resultType="int">
+		SELECT
+							COUNT(MEMBER_ID)
+		FROM
+							MEMBER
+		WHERE
+							MEMBER_ID =#{ member_id}
+	</select>
+	
+	<insert id="signIn" parameterType="memberVO">
+		INSERT 
+		INTO 
+		MEMBER
+							(
+							MEMBER_NO, 
+							MEMBER_NAME, 
+							MEMBER_ID, 
+							MEMBER_PW,
+							MEMBER_EMAIL 
+							)
+		VALUES
+							(
+							#{ member_no},
+							#{ member_name},
+							#{ member_id},
+							#{ member_pw},
+							#{ member_email} 
+							)
+	</insert>
 </mapper>

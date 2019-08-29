@@ -11,7 +11,8 @@
 	
 	<http auto-config="true" use-expressions="true">
 	<!-- 		<intercept-url pattern="/notice/**" access="hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')"/> -->
-		<intercept-url pattern="/member/**" access="permitAll"/>
+		<intercept-url pattern="/member/signInDo" access="isAnonymous()"/>
+		<intercept-url pattern="/member/**" access="isAnonymous()"/>
 		<intercept-url pattern="/**" access="permitAll" />
 		
 	<!-- 		권한 설정 -->
@@ -19,6 +20,7 @@
 			username-parameter="member_id"
 			password-parameter="member_pw"
 			login-page="/member/logIn"
+			login-processing-url="/login"
 			default-target-url="/"
 		/>
 		
@@ -32,9 +34,11 @@
 	
 	<authentication-manager>
 		<authentication-provider user-service-ref="userService">
+			<password-encoder ref="bcryptPasswordEncoder"/>
 		</authentication-provider>
 	</authentication-manager>
+	<beans:bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 	
 	<beans:bean id="userService" class="com.sowl.sowlbooks.Service.memberService"/>
-
+	
 </beans:beans>

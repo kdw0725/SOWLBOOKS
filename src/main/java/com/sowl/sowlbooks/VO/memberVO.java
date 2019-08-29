@@ -7,16 +7,16 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import lombok.ToString;
+
+@ToString
 public class memberVO implements UserDetails{
 	
 	private int 	member_no;
 	private String  member_name;
 	private String  member_id;
 	private String  member_pw;
-	private String  member_department;
-	private int 	member_grade;
-	private int 	member_birth;
-	private int 	member_pnum;
+	private String  member_email;
 	private String  member_authority;
 	private boolean member_delflag;
 	
@@ -31,10 +31,17 @@ public class memberVO implements UserDetails{
 	public String getPassword() {
 		return member_pw;
 	}
+	public void setPassword(String member_pw) {
+		this.member_pw = member_pw;
+	}
 
 	@Override
 	public String getUsername() {
 		return member_id;
+	}
+	
+	public void setUsername(String member_id) {
+		this.member_id = member_id;
 	}
 
 	@Override
@@ -73,36 +80,12 @@ public class memberVO implements UserDetails{
 		this.member_name = member_name;
 	}
 
-	public String getMember_department() {
-		return member_department;
+	public String getMember_email() {
+		return member_email;
 	}
-
-	public void setMember_department(String member_department) {
-		this.member_department = member_department;
-	}
-
-	public int getMember_grade() {
-		return member_grade;
-	}
-
-	public void setMember_grade(int member_grade) {
-		this.member_grade = member_grade;
-	}
-
-	public int getMember_birth() {
-		return member_birth;
-	}
-
-	public void setMember_birth(int member_birth) {
-		this.member_birth = member_birth;
-	}
-
-	public int getMember_pnum() {
-		return member_pnum;
-	}
-
-	public void setMember_pnum(int member_pnum) {
-		this.member_pnum = member_pnum;
+	
+	public void setMember_email(String member_email) {
+		this.member_email = member_email;
 	}
 	
 }
