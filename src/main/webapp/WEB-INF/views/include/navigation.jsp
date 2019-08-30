@@ -56,15 +56,15 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <a class="navbar-brand" href="/SKHUBooks/">
+                <a class="navbar-brand" href="/SOWLBOOKS/">
                     <h1><img src="/SOWLBOOKS/resources/bootstrap/images/logo.PNG" alt="logo"></h1>
                 </a>
 
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="/SKHUBooks/"><h3><b><x>Home</x></b></h3></a></li>
-				<li><a href="/SOWLBOOKS/board/boardList"><h3><b><p>공지사항</p></b></h3></a></li>
+                    <li class="active"><a href="/SOWLBOOKS/"><h3><b><x>Home</x></b></h3></a></li>
+				<li><a href="/SOWLBOOKS/notice/notice"><h3><b><p>공지사항</p></b></h3></a></li>
                     <li><a href="/SOWLBOOKS/book/bookSearch"><h3><p><b>자료 검색</b></p></h3></a></li>
                     
 
