@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.sowl.sowlbooks.Service.noticeService;
+import com.sowl.sowlbooks.VO.Criteria;
+import com.sowl.sowlbooks.VO.PageMaker;
+import com.sowl.sowlbooks.VO.SearchCriteria;
 import com.sowl.sowlbooks.VO.noticeVO;
 
 @Controller
@@ -15,9 +18,12 @@ public class noticeController {
 	@Autowired
 	noticeService service;
 	
-	@RequestMapping(value="/notice/notice")
-	public String notice(Model model) throws Exception{
-		model.addAttribute("list", service.notice());
+	@RequestMapping(value="/notice/notice", method = RequestMethod.GET)
+	public String notice(Model model, Criteria cri, SearchCriteria scri) throws Exception{
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(service.countNotice());
+		model.addAttribute("list", service.notice(scri));
 		return "/notice/notice";
 	}
 	

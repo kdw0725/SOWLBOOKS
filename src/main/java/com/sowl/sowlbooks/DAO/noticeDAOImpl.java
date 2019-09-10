@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.sowl.sowlbooks.VO.Criteria;
 import com.sowl.sowlbooks.VO.noticeVO;
 
 @Repository
@@ -16,8 +17,8 @@ public class noticeDAOImpl implements noticeDAO{
 	SqlSession sqlSession;
 
 	@Override
-	public List<noticeVO> notice() throws Exception{
-		return sqlSession.selectList(namespace+".notice");
+	public List<noticeVO> notice(Criteria cri) throws Exception{
+		return sqlSession.selectList(namespace+".notice",cri);
 	}
 
 	@Override
@@ -38,6 +39,11 @@ public class noticeDAOImpl implements noticeDAO{
 	@Override
 	public int noticeDelete(int notice_no) throws Exception {
 		return sqlSession.update(namespace+".noticeDelete", notice_no);
+	}
+
+	@Override
+	public int countNotice() throws Exception {
+		return sqlSession.selectOne(namespace+".countNotice");
 	}
 
 }
