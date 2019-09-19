@@ -1,5 +1,8 @@
 package com.sowl.sowlbooks.VO;
 
+import lombok.ToString;
+
+@ToString()
 public class PageMaker {
 	private Criteria cri;
 	private int totalCount;
@@ -34,7 +37,8 @@ public class PageMaker {
         }
         
         startPage = (endPage - displayPageNum) + 1;
- 
+        if(startPage < 1)
+        	startPage = 1;
         prev = startPage == 1 ? false : true;
         next = endPage * cri.getPerPageNum() >= totalCount ? false : true;
 	}

@@ -23,13 +23,14 @@
 							#{pageStart}, #{perPageNum}
 	</select>
 	
-	<select id="countNotice" resultType="Integer">
+	<select id="countNotice" parameterType="hashMap" resultType="Integer">
 		SELECT
 							COUNT(NOTICE_NO)
 		FROM
 							NOTICE
 		WHERE
 							NOTICE_DELFLAG = 0
+		<include refid="search"/>
 	</select>
 	
 	<select id="selectNotice" parameterType="int" resultType="noticeVO">

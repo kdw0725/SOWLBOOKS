@@ -41,8 +41,8 @@ public class noticeServiceImpl implements noticeService{
 	}
 
 	@Override
-	public int countNotice() throws Exception {
-		return dao.countNotice();
+	public int countNotice(Criteria cri) throws Exception {
+		return dao.countNotice(cri);
 	}
 
 }

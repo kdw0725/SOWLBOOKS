@@ -11,6 +11,6 @@ public interface noticeService {
 	public int noticeInsert(noticeVO vo) throws Exception;
 	public int noticeUpdate(noticeVO vo) throws Exception;
 	public int noticeDelete(int notice_no) throws Exception;
-	public int countNotice() throws Exception;
+	public int countNotice(Criteria cri) throws Exception;
 
 }

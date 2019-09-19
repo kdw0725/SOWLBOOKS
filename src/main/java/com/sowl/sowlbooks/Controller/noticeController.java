@@ -22,8 +22,10 @@ public class noticeController {
 	public String notice(Model model, Criteria cri, SearchCriteria scri) throws Exception{
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(service.countNotice());
+		pageMaker.setTotalCount(service.countNotice(scri));
 		model.addAttribute("list", service.notice(scri));
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("keyword", scri.getKeyword());
 		return "/notice/notice";
 	}
 	

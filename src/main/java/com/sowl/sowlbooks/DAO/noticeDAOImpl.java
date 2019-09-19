@@ -42,8 +42,8 @@ public class noticeDAOImpl implements noticeDAO{
 	}
 
 	@Override
-	public int countNotice() throws Exception {
-		return sqlSession.selectOne(namespace+".countNotice");
+	public int countNotice(Criteria cri) throws Exception {
+		return sqlSession.selectOne(namespace+".countNotice", cri);
 	}
 
 }
