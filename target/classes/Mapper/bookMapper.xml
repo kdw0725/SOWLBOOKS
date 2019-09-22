@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sowl.sowlbooks.bookMapper">
+	<select id="bookList" resultType="bookVO">
+		SELECT 
+							@rownum:=@rownum+1 NO,
+							BOOK_NO, 
+							BOOK_NAME, 
+							BOOK_AUTHOR, 
+							BOOK_PUBLISHER, 
+							BOOK_INSERTDATE 
+		FROM 
+							BOOK,
+							(SELECT @rownum:=0) r
+		WHERE
+							BOOK_DELFLAG = 0
+		ORDER BY
+							NO DESC
+	</select>
+</mapper>
