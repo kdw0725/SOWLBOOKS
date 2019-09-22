@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sowl.sowlbooks.DAO.bookDAO;
+import com.sowl.sowlbooks.VO.Criteria;
 import com.sowl.sowlbooks.VO.bookVO;
 
 @Service
@@ -14,8 +15,13 @@ public class bookServiceImpl implements bookService{
 	bookDAO dao;
 
 	@Override
-	public List<bookVO> bookList() {
-		return dao.bookList();
+	public List<bookVO> bookList(Criteria cri) {
+		return dao.bookList(cri);
+	}
+
+	@Override
+	public int countBook(Criteria cri) {
+		return dao.countBook(cri);
 	}
 
 }

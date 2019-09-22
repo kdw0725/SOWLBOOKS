@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.sowl.sowlbooks.Service.bookService;
+import com.sowl.sowlbooks.VO.Criteria;
+import com.sowl.sowlbooks.VO.PageMaker;
+import com.sowl.sowlbooks.VO.SearchCriteria;
 
 @Controller
 public class bookController {
@@ -19,8 +22,13 @@ public class bookController {
 	}
 	
 	@RequestMapping(value="/book/bookList", method = RequestMethod.GET)
-	public String bookList(Model model) {
-		model.addAttribute("list",service.bookList());
+	public String bookList(Model model, Criteria cri, SearchCriteria scri) throws Exception{
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(service.countBook(scri));
+		model.addAttribute("list",service.bookList(scri));
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("keyword", scri.getKeyword());
 		return "/book/bookList";
 	}
 

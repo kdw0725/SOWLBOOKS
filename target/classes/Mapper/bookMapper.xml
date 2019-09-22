@@ -9,14 +9,38 @@
 							BOOK_NO, 
 							BOOK_NAME, 
 							BOOK_AUTHOR, 
-							BOOK_PUBLISHER, 
-							BOOK_INSERTDATE 
+							BOOK_PUBLISHER
 		FROM 
 							BOOK,
 							(SELECT @rownum:=0) r
 		WHERE
 							BOOK_DELFLAG = 0
+		<include refid="search"/>
 		ORDER BY
 							NO DESC
+		LIMIT
+							#{pageStart}, #{perPageNum}
 	</select>
+	
+	<select id="countBook" parameterType="hashMap" resultType="Integer">
+		SELECT 
+							COUNT(BOOK_NO) 
+		FROM 
+							BOOK
+		WHERE
+							BOOK_DELFLAG = 0
+		<include refid="search"/>
+	</select>
+	
+	<sql id="search">
+		<if test="keyword != null">
+		AND
+							BOOK_NAME LIKE CONCAT('%', #{keyword}, '%')
+		OR
+							BOOK_AUTHOR LIKE CONCAT('%',#{keyword},'%')
+		OR
+							BOOK_PUBLISHER LIKE CONCAT('%', #{keyword},'%')
+		
+		</if>
+	</sql>
 </mapper>

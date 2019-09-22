@@ -15,6 +15,7 @@
 	<%@ include file="/WEB-INF/views/include/section2.jsp"%>
 	<div class="container" style="width : 70%; margin-top: 50px;">
 		<table class="table table-striped" style="text-align: center">
+			<caption><b>"${keyword }"</b>에 대한 검색 결과입니다.</caption>
 			<tr>
 				<th>NO</th>
 				<th style="text-align: center; width : 20%;">사진</th>
@@ -25,7 +26,7 @@
 			</tr>
 			<c:forEach var="list" varStatus="i" items="${list}">
 		 	<tr onclick="noticeDetail(${list.book_no})" style="vertical-align: middle;">
-			 	<th scope="row">${list.no }</th>
+			 	<th scope="row" style="vertical-align : middle;">${list.no }</th>
 			 		<td style="height : 100px; width : 20%;' vertical-align: middle; text-align: center;">
 						<img class="file_img" alt="등록된 이미지가 없습니다.">
 					</td>
@@ -36,6 +37,34 @@
 				</tr>
 			</c:forEach>
 		</table>
+		<div class="text-center">
+			<ul class="paging">
+				<c:if test="${pageMaker.prev }">
+					<li class="pagingLeftBtn">
+						<a href='<c:url value="/book/bookList?keyword=${keyword }&page=${pageMaker.startPage-1 }"/>'></a>
+					</li>
+				</c:if>
+				<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+					<c:choose>
+						<c:when test="${idx==pageMaker.cri.page }">
+							<li class="active">
+								<a href='<c:url value="/book/bookList?keyword=${keyword }&page=${idx }"/>'>${idx }</a>
+							</li>
+						</c:when>
+						<c:otherwise>
+							<li>
+								<a href='<c:url value="/book/bookList?keyword=${keyword }&page=${idx }"/>'>${idx }</a>
+							</li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
+					<li class="pagingRightBtn">
+	        			<a href='<c:url value="/book/bookList?keyword=${keyword }&page=${pageMaker.endPage+1 }"/>'></a>
+					</li>
+				</c:if>
+			</ul>
+		</div>
 	</div>
 </body>
 </html>
