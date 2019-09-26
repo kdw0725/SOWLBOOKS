@@ -78,8 +78,15 @@ public class bookController {
 	
 	@RequestMapping(value="/book/bookDetail", method = RequestMethod.GET)
 	public String bookDetail(Model model, bookVO vo, fileVO fvo) throws Exception{
-		model.addAttribute("list", service.bookDetail(Integer.parseInt(vo.getBook_no())));
+		model.addAttribute("list", service.bookDetail(vo.getBook_no()));
 		return "/book/bookDetail";
+	}
+	
+	@RequestMapping(value="/book/bookDelete", method = RequestMethod.GET)
+	public String bookDelete(fileVO fvo) throws Exception{
+		service.bookDelete(fvo.getBook_no());
+		service.fileDelete(fvo.getFile_no());
+		return "redirect:/book/bookList";
 	}
 
 }

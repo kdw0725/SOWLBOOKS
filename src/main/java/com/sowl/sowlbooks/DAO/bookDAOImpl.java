@@ -39,8 +39,18 @@ public class bookDAOImpl implements bookDAO{
 	}
 
 	@Override
-	public HashMap<String, Object> bookDetail(int book_no) {
+	public HashMap<String, Object> bookDetail(String book_no) {
 		return sqlSession.selectOne(namespace+".bookDetail", book_no);
+	}
+
+	@Override
+	public int bookDelete(String book_no) {
+		return sqlSession.update(namespace+".bookDelete", book_no);
+	}
+
+	@Override
+	public int fileDelete(int file_no) {
+		return sqlSession.update(namespace+".fileDelete", file_no);
 	}
 
 }

@@ -56,10 +56,10 @@
 				</tr>
 				<tr>
 					<th colspan="3">
-						<sec:authorize access="hasRole('ROLE_ADMIN')">
+<%-- 						<sec:authorize access="hasRole('ROLE_ADMIN')"> --%>
 							<input type="button" class="btn btn-default pull-left" value="수정" onclick="bookUpdate(${list.BOOK_NO })">
-<%-- 							<input type="button" class="btn btn-default pull-left" value="삭제" onclick="bookDelete('${list.BOOK_NO }','${list.FILE_NAME }')"> --%>
-						</sec:authorize>
+							<input type="button" class="btn btn-default pull-left" value="삭제" onclick="bookDelete('${list.BOOK_NO }','${list.FILE_NO }')">
+<%-- 						</sec:authorize> --%>
 						<input type="button" value="글 목록" class="btn btn-default pull-right" onclick="gotoHome()">
 					</th>
 				</tr>
@@ -69,7 +69,11 @@
 </body>
 <script type="text/javascript">
 function gotoHome(){
-	location.href="/SOWLBOOKS/book/bookList"
+	location.href="/SOWLBOOKS/book/bookList";
+}
+
+function bookDelete(book_no, file_no){
+	location.href="/SOWLBOOKS/book/bookDelete?book_no="+book_no+"&file_no="+file_no;
 }
 </script>
 </html>

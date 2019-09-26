@@ -88,7 +88,7 @@
 	
 	</insert>
 	
-	<select id="bookDetail" parameterType="int" resultType="hashMap">
+	<select id="bookDetail" parameterType="String" resultType="hashMap">
 		SELECT 
 							A.BOOK_NO,
 							A.BOOK_NAME, 
@@ -96,7 +96,8 @@
 							A.BOOK_PUBLISHER, 
 							A.MEMBER_NO,
 							DATE_FORMAT(A.BOOK_INSERTDATE, '%Y-%m-%d') AS BOOK_INSERTDATE,
-							B.FILE_NAME 
+							B.FILE_NAME,
+							B.FILE_NO
 		FROM 
 							BOOK A
 		INNER JOIN
@@ -105,5 +106,28 @@
 							A.BOOK_NO = B.BOOK_NO
 		WHERE
 							A.BOOK_NO = #{ book_no}
+		AND
+							A.BOOK_DELFLAG = 0
+		AND
+							B.FILE_DELFLAG = 0
 	</select>
+	
+	<update id="bookDelete" parameterType="String">
+		UPDATE
+						BOOK
+		SET
+						BOOK_DELFLAG = 1
+		WHERE
+						BOOK_NO = #{ book_no}
+	</update>
+	
+	<update id="fileDelete" parameterType="int">
+		UPDATE
+						FILE
+		SET
+						FILE_DELFLAG = 1
+		WHERE
+						FILE_NO = #{ file_no}
+	
+	</update>
 </mapper>

@@ -12,6 +12,8 @@ public interface bookService {
 	public int countBook(Criteria cri);
 	public int insertBook(bookVO vo);
 	public int insertFile(fileVO vo);
-	public HashMap<String, Object> bookDetail(int book_no);
+	public HashMap<String, Object> bookDetail(String book_no);
+	public int bookDelete(String book_no);
+	public int fileDelete(int file_no);
 	
 }
