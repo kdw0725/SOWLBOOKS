@@ -7,5 +7,6 @@
 		<typeAlias alias="memberVO" type="com.sowl.sowlbooks.VO.memberVO"/>
 		<typeAlias alias="noticeVO" type="com.sowl.sowlbooks.VO.noticeVO"/>
 		<typeAlias alias="bookVO" type="com.sowl.sowlbooks.VO.bookVO"/>
+		<typeAlias alias="fileVO" type="com.sowl.sowlbooks.VO.fileVO"/>
 	</typeAliases>
 </configuration>

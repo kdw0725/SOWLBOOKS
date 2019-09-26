@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <meta charset="UTF-8">
 <%@ include file="/WEB-INF/views/include/bootstrap.jsp"%>
 <title>SOWLBOOKS</title>
@@ -71,5 +72,20 @@
 function gotoList(){
 	location.href="/SOWLBOOKS/book/bookList"
 }
+
+$(document).ready(function(){ 
+	var fileTarget = $('.filebox .upload-hidden'); 
+	
+	fileTarget.on('change', function(){ // 값이 변경되면
+		if(window.FileReader){ // modern brows1er
+			var filename = $(this)[0].files[0].name;
+		}
+		else{
+			var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출  
+		}
+		
+		$(this).siblings('.filebox .form-control').val(filename); 
+	});
+});
 </script>
 </html>

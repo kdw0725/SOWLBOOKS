@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.sowl.sowlbooks.VO.Criteria;
 import com.sowl.sowlbooks.VO.bookVO;
+import com.sowl.sowlbooks.VO.fileVO;
 
 @Repository
 public class bookDAOImpl implements bookDAO{
@@ -24,6 +25,16 @@ public class bookDAOImpl implements bookDAO{
 	@Override
 	public int countBook(Criteria cri) {
 		return sqlSession.selectOne(namespace+".countBook",cri);
+	}
+
+	@Override
+	public int insertBook(bookVO vo) {
+		return sqlSession.insert(namespace+".insertBook", vo);
+	}
+
+	@Override
+	public int insertFile(fileVO vo) {
+		return sqlSession.insert(namespace+".insertFile", vo);
 	}
 
 }
