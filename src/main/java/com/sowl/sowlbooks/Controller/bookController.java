@@ -31,5 +31,10 @@ public class bookController {
 		model.addAttribute("keyword", scri.getKeyword());
 		return "/book/bookList";
 	}
+	
+	@RequestMapping(value="/book/bookInsert", method = RequestMethod.GET)
+	public String bookInsert(Model model) throws Exception{
+		return "/book/bookInsert";
+	}
 
 }
