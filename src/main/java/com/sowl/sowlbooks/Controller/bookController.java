@@ -75,5 +75,11 @@ public class bookController {
 		}
 		return "redirect:/book/bookList";
 	}
+	
+	@RequestMapping(value="/book/bookDetail", method = RequestMethod.GET)
+	public String bookDetail(Model model, bookVO vo, fileVO fvo) throws Exception{
+		model.addAttribute("list", service.bookDetail(Integer.parseInt(vo.getBook_no())));
+		return "/book/bookDetail";
+	}
 
 }

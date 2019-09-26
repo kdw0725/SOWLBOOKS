@@ -1,5 +1,6 @@
 package com.sowl.sowlbooks.DAO;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -18,7 +19,7 @@ public class bookDAOImpl implements bookDAO{
 	SqlSession sqlSession;
 
 	@Override
-	public List<bookVO> bookList(Criteria cri) {
+	public List<HashMap<String, Object>> bookList(Criteria cri) {
 		return sqlSession.selectList(namespace+".bookList",cri);
 	}
 
@@ -35,6 +36,11 @@ public class bookDAOImpl implements bookDAO{
 	@Override
 	public int insertFile(fileVO vo) {
 		return sqlSession.insert(namespace+".insertFile", vo);
+	}
+
+	@Override
+	public HashMap<String, Object> bookDetail(int book_no) {
+		return sqlSession.selectOne(namespace+".bookDetail", book_no);
 	}
 
 }

@@ -3,21 +3,26 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sowl.sowlbooks.bookMapper">
-	<select id="bookList" resultType="bookVO">
+	<select id="bookList" resultType="hashMap">
 		SELECT 
-							@rownum:=@rownum+1 NO,
-							BOOK_NO, 
-							BOOK_NAME, 
-							BOOK_AUTHOR, 
-							BOOK_PUBLISHER
+							A.BOOK_NO,
+							A.BOOK_NAME, 
+							A.BOOK_AUTHOR, 
+							A.BOOK_PUBLISHER, 
+							A.MEMBER_NO,
+							DATE_FORMAT(A.BOOK_INSERTDATE, '%Y-%m-%d') AS BOOK_INSERTDATE,
+							B.FILE_NAME 
 		FROM 
-							BOOK,
-							(SELECT @rownum:=0) r
+							BOOK A
+		INNER JOIN
+							FILE B
+		ON
+							A.BOOK_NO = B.BOOK_NO
 		WHERE
-							BOOK_DELFLAG = 0
+							A.BOOK_DELFLAG = 0
 		<include refid="search"/>
 		ORDER BY
-							NO DESC
+							A.BOOK_NAME DESC
 		LIMIT
 							#{pageStart}, #{perPageNum}
 	</select>
@@ -82,4 +87,23 @@
 							)
 	
 	</insert>
+	
+	<select id="bookDetail" parameterType="int" resultType="hashMap">
+		SELECT 
+							A.BOOK_NO,
+							A.BOOK_NAME, 
+							A.BOOK_AUTHOR, 
+							A.BOOK_PUBLISHER, 
+							A.MEMBER_NO,
+							DATE_FORMAT(A.BOOK_INSERTDATE, '%Y-%m-%d') AS BOOK_INSERTDATE,
+							B.FILE_NAME 
+		FROM 
+							BOOK A
+		INNER JOIN
+							FILE B
+		ON
+							A.BOOK_NO = B.BOOK_NO
+		WHERE
+							A.BOOK_NO = #{ book_no}
+	</select>
 </mapper>

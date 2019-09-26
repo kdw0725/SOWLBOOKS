@@ -1,5 +1,6 @@
 package com.sowl.sowlbooks.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class bookServiceImpl implements bookService{
 	bookDAO dao;
 
 	@Override
-	public List<bookVO> bookList(Criteria cri) {
+	public List<HashMap<String, Object>> bookList(Criteria cri) {
 		return dao.bookList(cri);
 	}
 
@@ -33,6 +34,11 @@ public class bookServiceImpl implements bookService{
 	@Override
 	public int insertFile(fileVO vo) {
 		return dao.insertFile(vo);
+	}
+
+	@Override
+	public HashMap<String, Object> bookDetail(int book_no) {
+		return dao.bookDetail(book_no);
 	}
 
 }

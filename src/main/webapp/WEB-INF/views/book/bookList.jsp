@@ -17,7 +17,6 @@
 		<table class="table table-striped" style="text-align: center">
 			<caption><b>"${keyword }"</b>에 대한 검색 결과입니다.</caption>
 			<tr>
-				<th>NO</th>
 				<th style="text-align: center; width : 20%;">사진</th>
 				<th style="text-align: center; width : 40%;">제목</th>
 				<th style="text-align: center">저자</th>
@@ -25,14 +24,13 @@
 				<th style="text-align: center">대출 가능</th>
 			</tr>
 			<c:forEach var="list" varStatus="i" items="${list}">
-		 	<tr onclick="noticeDetail(${list.book_no})" style="vertical-align: middle;">
-			 	<th scope="row" style="vertical-align : middle;">${list.no }</th>
+		 	<tr onclick="bookDetail(${list.BOOK_NO})" style="vertical-align: middle;">
 			 		<td style="height : 100px; width : 20%;' vertical-align: middle; text-align: center;">
-						<img class="file_img" alt="등록된 이미지가 없습니다.">
+						<img class="file_img" alt="등록된 이미지가 없습니다." src="/SOWLBOOKS/resources/bootstrap/images/upload/${list.FILE_NAME }">
 					</td>
-					<td style="vertical-align : middle;"><a>${list.book_name }</a></td>
-					<td style="vertical-align : middle;">${list.book_author }</td>
-					<td style="vertical-align : middle;">${list.book_publisher }</td>
+					<td style="vertical-align : middle;"><a>${list.BOOK_NAME }</a></td>
+					<td style="vertical-align : middle;">${list.BOOK_AUTHOR }</td>
+					<td style="vertical-align : middle;">${list.BOOK_PUBLISHER }</td>
 					<td style="vertical-align : middle;">대출 가능한가요</td>
 				</tr>
 			</c:forEach>
@@ -67,4 +65,10 @@
 		</div>
 	</div>
 </body>
+<script type="text/javascript">
+function bookDetail(book_no){
+	location.href="/SOWLBOOKS/book/bookDetail?book_no="+book_no;
+}
+</script>
+
 </html>

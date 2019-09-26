@@ -14,12 +14,12 @@
 	도서 정보
 	<%@ include file="/WEB-INF/views/include/section2.jsp"%>
 	
-	<div class="container">
+	<div class="container" style="width : 70%; margin-top: 50px;">
 		<table class="table" style="text-align: center; vertical-align: middle;">
 			<tbody class="detail_body">
 				<tr>
 					<th style="text-align: center; width: 40%;" rowspan="5">
-						<img class="book_image" alt="등록된 이미지가 없습니다." src="/SKHUBooks/resources/bootstrap/images/upload/${list.FILE_NAME }">
+						<img class="book_image" alt="등록된 이미지가 없습니다." src="/SOWLBOOKS/resources/bootstrap/images/upload/${list.FILE_NAME }">
 					</th>
 					<th style="vertical-align : middle;">도서명</th>
 					<td style="vertical-align : middle;">${list.BOOK_NAME }</td>
@@ -34,20 +34,21 @@
 				</tr>
 				<tr>
 					<th style="vertical-align : middle;">상태</th>
-					<td style="vertical-align : middle;">
-						<c:if test="${list.MEMBER_NO == null && list.BOOK_RESERVE == null}">
-							<blue style="margin-left: 16%;">대출 가능</blue>
-							<button class="btn btn-default pull-right" onclick="book_reserve(${list.BOOK_NO})">예약하기</button>
-							<sec:authentication property='principal.username' var="logInID"/>
-							<input type="hidden" value="${logInID }" id="logInID">
-						</c:if>
-						<c:if test="${list.BOOK_RESERVE !=null }">
-							<p>예약중</p>
-						</c:if>
-						<c:if test="${list.MEMBER_NO != null}">
-							<red>대출 불가</red>
-						</c:if>
-					</td>
+<!-- 					<td style="vertical-align : middle;"> -->
+<%-- 						<c:if test="${list.MEMBER_NO == null && list.BOOK_RESERVE == null}"> --%>
+<!-- 							<blue style="margin-left: 16%;">대출 가능</blue> -->
+<%-- 							<button class="btn btn-default pull-right" onclick="book_reserve(${list.BOOK_NO})">예약하기</button> --%>
+<%-- 							<sec:authentication property='principal.username' var="logInID"/> --%>
+<%-- 							<input type="hidden" value="${logInID }" id="logInID"> --%>
+<%-- 						</c:if> --%>
+<%-- 						<c:if test="${list.BOOK_RESERVE !=null }"> --%>
+<!-- 							<p>예약중</p> -->
+<%-- 						</c:if> --%>
+<%-- 						<c:if test="${list.MEMBER_NO != null}"> --%>
+<!-- 							<red>대출 불가</red> -->
+<%-- 						</c:if> --%>
+<!-- 					</td> -->
+<td>ddd</td>
 				</tr>
 				<tr>
 					<th style="vertical-align : middle;">등록일</th>
@@ -66,4 +67,9 @@
 		</table>
 	</div>
 </body>
+<script type="text/javascript">
+function gotoHome(){
+	location.href="/SOWLBOOKS/book/bookList"
+}
+</script>
 </html>
